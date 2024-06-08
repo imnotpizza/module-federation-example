@@ -28,7 +28,6 @@ export default {
 
     function updateReactComponent() {
       if (!ButtonComponent.value || !!error.value) return;
-
       ReactDOM.render(
         React.createElement(ButtonComponent.value, props),
         root.value,
@@ -49,6 +48,7 @@ export default {
         updateReactComponent();
       })
       .catch((e) => {
+        console.error(e);
         error.value = e;
       });
 

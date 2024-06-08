@@ -6,8 +6,6 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const deps = require('./package.json').dependencies;
 
 const localEntryUrl = 'home@http://localhost:3002/remoteEntry.js';
-const prodEntryUrl =
-  'home@http://module-federation-example.s3-website-ap-southeast-2.amazonaws.com/remoteEntry.js';
 
 module.exports = (env = {}) => ({
   mode: 'development',
@@ -18,7 +16,7 @@ module.exports = (env = {}) => ({
   },
   target: 'web',
   entry: path.resolve(__dirname, './src/bootstrap.js'),
-  output: {B
+  output: {
     publicPath: 'auto',
   },
   resolve: {
@@ -70,7 +68,7 @@ module.exports = (env = {}) => ({
     new ModuleFederationPlugin({
       name: 'layout',
       remotes: {
-        home: prodEntryUrl,
+        home: localEntryUrl,
       },
       shared: {
         ...deps,

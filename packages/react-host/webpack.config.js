@@ -4,8 +4,6 @@ const deps = require('./package.json').dependencies;
 const path = require('path');
 
 const localEntryUrl = 'home@http://localhost:3002/remoteEntry.js';
-const prodEntryUrl =
-  'home@http://module-federation-example.s3-website-ap-southeast-2.amazonaws.com/remoteEntry.js';
 
 module.exports = {
   entry: './src/index',
