@@ -5,9 +5,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
 const deps = require('./package.json').dependencies;
 
-const localEntryUrl = 'home@http://localhost:3002/remoteEntry.js';
+const getUrlByEnv = () => {
+  if (!process.env.NODE_ENV === 'development') {
+    return 'http://localhost:3012';
+  } else {
+    process.env.VUE_HOST_URL;
+  }
+};
 
-module.exports = (env = {}) => ({
+module.exports = () => ({
   mode: 'development',
   cache: false,
   devtool: 'source-map',
@@ -66,9 +72,9 @@ module.exports = (env = {}) => ({
       filename: '[name].css',
     }),
     new ModuleFederationPlugin({
-      name: 'layout',
+      name: 'host',
       remotes: {
-        home: localEntryUrl,
+        remote: `remote@${getUrlByEnv()}/remoteEntry.js`,
       },
       shared: {
         ...deps,
@@ -93,7 +99,7 @@ module.exports = (env = {}) => ({
       directory: path.join(__dirname),
     },
     compress: true,
-    port: 3001,
+    port: 3011,
     hot: true,
     headers: {
       'Access-Control-Allow-Origin': '*',

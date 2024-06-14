@@ -8,11 +8,10 @@
     "packages/react-host"
   ],
   "scripts": {
-    "v:start": "yarn workspace vue-host start",
-    "rh:start": "yarn workspace react-host start",
-    "r:start": "yarn workspace react-remote start",
-    "v:build": "yarn workspace vue-host build",
-    "rh:build": "yarn workspace react-host build",
-    "r:build": "yarn workspace react-remote build"
+    "start": "yarn host:start && yarn remote:start",
+    "host:start": "yarn workspace vue-host start",
+    "host:build": "yarn workspace vue-host build",
+    "remote:start": "yarn workspace react-remote start",
+    "remote:build": "yarn workspace react-remote build"
   }
 }
