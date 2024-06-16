@@ -4,26 +4,14 @@
   * @description: coconut-modules module federation 연동용 컴포넌트
  -->
 <template>
-  <!-- 에러 발생시 -->
-  <div v-if="error" class="mfed-container">
-    <slot name="error" />
-  </div>
-  <!-- 로딩 중 -->
-  <div v-else-if="isLoading" class="mfed-container">
-    <slot name="loading" />
-  </div>
   <div ref="root" class="mfed-container"></div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, onMounted, onBeforeUnmount, onUpdated, watch, toRaw } from 'vue';
-import { Container, Root, createRoot } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import ReactDOM from 'react-dom';
 import React from 'react';
-import { useStore } from 'vuex';
-
-const store = useStore();
-const userInfo = ref(store.getters['auth/getUserInfo']);
 
 /**
  * React Remote Module props
@@ -41,15 +29,15 @@ const props = defineProps({
   },
 });
 
-const reactRoot = ref<Root | null>(null); // react root
-const root = ref<Container | null>(null);
-const error = ref<Error>(); // error 저장
-const remoteModule = ref<Root | null>(null); // entry의 react module str
+const reactRoot = ref(null); // react root
+const root = ref(null);
+const error = ref(); // error 저장
+const remoteModule = ref(null); // entry의 react module str
 const isLoading = ref(true);
 
 const updateReactComponent = () => {
   if (!!error.value || !remoteModule.value || !root.value) return;
-
+  
   // prod 환경에서 실행시 에러발생하여 ReactDOM.render로 사용
   if (!reactRoot.value) {
     reactRoot.value = createRoot(root.value); // bundle의 element를 넣음
@@ -66,11 +54,11 @@ onMounted(() => {
   if (remoteModule.value) return;
   props
     .loadRemoteModule()
-    .then((b: any) => {
+    .then((b) => {
       remoteModule.value = b;
       updateReactComponent();
     })
-    .catch((e: Error) => {
+    .catch((e) => {
       console.error('Remote Module Load Error ', e);
       error.value = e;
     })

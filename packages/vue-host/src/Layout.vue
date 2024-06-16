@@ -3,21 +3,21 @@
     <Header />
     <div class="layout">
       <Sidebar />
-      <main></main>
+      <main>
+        <RemoteModuleLoader :props="{}" :loadRemoteModule="loadRemoteModule" />
+      </main>
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
 import Header from './components/Header.vue';
 import Sidebar from './components/Sidebar.vue';
+import RemoteModuleLoader from './components/RemoteModuleLoader.vue';
 
-export default {
-  name: 'Layout',
-  components: {
-    Header,
-    Sidebar,
-  },
+const loadRemoteModule = async () => {
+  const res = (await import('remote/RemotePage')).default;
+  return res;
 };
 </script>
 

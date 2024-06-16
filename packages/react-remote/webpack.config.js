@@ -34,7 +34,7 @@ module.exports = {
       name: 'remote',
       filename: 'remoteEntry.js',
       exposes: {
-        './RemotePage': './src/bootstraps/RemotePageRoot',
+        './RemotePage': './src/RemotePage',
       },
       shared: {
         ...deps,

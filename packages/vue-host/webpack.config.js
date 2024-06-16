@@ -6,7 +6,7 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const deps = require('./package.json').dependencies;
 
 const getUrlByEnv = () => {
-  if (!process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development') {
     return 'http://localhost:3012';
   } else {
     process.env.VUE_HOST_URL;
