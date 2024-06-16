@@ -16,7 +16,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "serve": "^13.0.0",
-    "vue": "3"
+    "vue": "3",
+    "vue-router": "^4.3.3"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.24.1",
