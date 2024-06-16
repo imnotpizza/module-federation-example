@@ -31,9 +31,6 @@ module.exports = () => ({
       vue: 'vue/dist/vue.esm-bundler.js',
     },
   },
-  experiments: {
-    topLevelAwait: true,
-  },
   module: {
     rules: [
       {

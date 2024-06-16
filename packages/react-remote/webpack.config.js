@@ -6,6 +6,7 @@ const path = require('path');
 module.exports = {
   mode: 'development',
   devtool: false,
+  entry: './src/index.js',
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
@@ -27,13 +28,6 @@ module.exports = {
         },
       },
     ],
-  },
-  cache: {
-    type: 'filesystem',
-    cacheDirectory: path.resolve(__dirname, '.temp_cache'),
-    buildDependencies: {
-      config: [__filename],
-    },
   },
   plugins: [
     new ModuleFederationPlugin({
