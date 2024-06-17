@@ -4,14 +4,14 @@ const deps = require('./package.json').dependencies;
 const path = require('path');
 
 module.exports = {
-  entry: './src/index',
   mode: 'development',
   devtool: false,
+  entry: './src/index.js',
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
     },
-    port: 3002,
+    port: 3012,
   },
   output: {
     publicPath: 'auto',
@@ -29,19 +29,12 @@ module.exports = {
       },
     ],
   },
-  cache: {
-    type: 'filesystem',
-    cacheDirectory: path.resolve(__dirname, '.temp_cache'),
-    buildDependencies: {
-      config: [__filename],
-    },
-  },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'home',
+      name: 'remote',
       filename: 'remoteEntry.js',
       exposes: {
-        './Button': './src/Button',
+        './RemotePage': './src/RemotePage',
       },
       shared: {
         ...deps,
@@ -56,9 +49,6 @@ module.exports = {
           eager: false,
         },
       },
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
     }),
   ],
 };

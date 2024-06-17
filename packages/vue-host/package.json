@@ -4,9 +4,9 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack-cli serve",
+    "start": "NODE_ENV=development webpack-cli serve",
     "serve": "serve dist -p 3001",
-    "build": "webpack --mode production",
+    "build": "NODE_ENV=production webpack --mode production",
     "clean": "rm -rf dist"
   },
   "dependencies": {
@@ -16,7 +16,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "serve": "^13.0.0",
-    "vue": "3"
+    "vue": "3",
+    "vue-router": "^4.3.3"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.24.1",
