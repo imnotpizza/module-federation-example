@@ -1,6 +1,6 @@
 <template>
   <div ref="root" class="mfed-container"></div>
-  <div :isLoading="isLoading">Loading....</div>
+  <div v-show="isLoading">Loading....</div>
 </template>
 
 <script setup>
