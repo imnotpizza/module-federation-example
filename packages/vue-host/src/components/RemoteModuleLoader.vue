@@ -1,10 +1,6 @@
-<!--
-  * @file: InventoryReqListTab.vue
-  * @author: liam / liam@o2pluss.com
-  * @description: coconut-modules module federation 연동용 컴포넌트
- -->
 <template>
   <div ref="root" class="mfed-container"></div>
+  <div :isLoading="isLoading">Loading....</div>
 </template>
 
 <script setup>
@@ -13,11 +9,7 @@ import { createRoot } from 'react-dom/client';
 import ReactDOM from 'react-dom';
 import React from 'react';
 
-/**
- * React Remote Module props
- * @param props: remote 컴포넌트로 전달할 props
- * @param loadRemoteModule: module load 함수
- */
+
 const props = defineProps({
   props: {
     type: Object,
