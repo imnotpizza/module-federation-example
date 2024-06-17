@@ -9,7 +9,7 @@ const getUrlByEnv = () => {
   if (process.env.NODE_ENV === 'development') {
     return 'http://localhost:3012';
   } else {
-    process.env.VUE_HOST_URL;
+    return 'http://module-federation-example.s3-website-ap-southeast-2.amazonaws.com';
   }
 };
 
