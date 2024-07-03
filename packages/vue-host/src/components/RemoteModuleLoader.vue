@@ -5,7 +5,7 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount, onUpdated, watch, toRaw } from 'vue';
-import { createRoot } from 'react-dom/client';
+import { createRoot } from '../react-dom/client';
 import ReactDOM from 'react-dom';
 import React from 'react';
 
